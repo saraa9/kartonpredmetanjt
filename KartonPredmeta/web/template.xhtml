@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <f:view contentType="text/html">
+        <h:head>
+             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                <h:outputStylesheet library = "css"  name="default.css"/>
+                <h:outputStylesheet library = "css"  name="cssLayout.css"/>
+                <title>Sistem za akreditaciju studijskih programa</title>
+            
+        </h:head>
+
+        <h:body>
+
+            <div id="top" class="alert alert-danger">
+                      <c:if test="${!mbLogin.ulogovan}" >
+                            <h:form id="login">      
+                                <p:dialog id="dialog"  modal="true" showEffect="fade" closable="false" visible="true" header="Prijava na sistem" position="center"  resizable="false" >      
+                         <h:panelGrid columns="3" cellpadding="5">
+                           <p:graphicImage name="slike/user.png" />
+                           <h:outputText value="Korisnicko ime: "  />
+                           <p:inputText style="width: 200px;" value="#{mbLogin.korisnik.korisnickoIme}"   
+                                                         id="username" required="true" label="username" requiredMessage="Korisničko ime je obavezno polje"/>  
+
+                           <p:graphicImage name="slike/pass.png" />
+                           <h:outputText value="Lozinka: " />
+                          <h:inputSecret style="width: 205px;" value="#{mbLogin.korisnik.lozinka}"   
+                                                           id="password" required="true" label="password" requiredMessage="Korisnička šifra je obavezno polje" />  
+
+
+
+                       </h:panelGrid>
+
+                       <p:commandButton value="Prijavi se"  style="float: right;" id="loginButton"  icon="ui-icon-check" update="growl" actionListener="#{mbLogin.login()}" ajax="false" />
+                   </p:dialog>  
+
+                   </h:form>
+                  </c:if>
+         <ui:insert name="top"> </ui:insert>
+            <div style="clear:both"></div>
+        
+       </div>   
+        <div>
+        <div id="left" style="width:22%">
+                <h:form >  
+                    <p:growl id="messages" sticky="false" autoUpdate="true"/>  
+                    <p:panelMenu style="width: 300px;">  
+                        
+                        <p:separator />  
+                        <p:submenu label="Predmet">  
+                            <p:menuitem value="Unos predmeta" url="faces/unosPredmeta.xhtml"/>   
+                            <p:menuitem value="Pretraga predmeta" url=""/> 
+                        </p:submenu>  
+                        <p:separator />  
+                        <p:submenu label="Karton predmeta" >  
+                            <p:menuitem value="Kreiranje kartona predmeta" url=""></p:menuitem> 
+                            <p:menuitem value="Pretraga kartona predmeta" url=""></p:menuitem> 
+                        </p:submenu>
+                    </p:panelMenu>  
+                </h:form> 
+                <ui:insert name="left"> </ui:insert>
+            </div>
+            
+            <div id="right" >
+                 
+                    <ui:insert name="right"> </ui:insert>
+                </div>
+                <div id="content" class="right_content">
+                    <ui:insert name="content"> 
+                    
+             
+                    </ui:insert>
+                </div>
+   </div>
+        
+         <div id="bottom" closable="true" collapsible="true">
+            <p style="font-family: sans-serif; font-size: 14px; color: #4f4f4f; margin-left: 600px;">Copyright © 2018 Sara Andžić.</p>
+            <ui:insert name="bottom"> </ui:insert>
+        </div>
+
+        </h:body>
+
+    </f:view>
+</html>
+

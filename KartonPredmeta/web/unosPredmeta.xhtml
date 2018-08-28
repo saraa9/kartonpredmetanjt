@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+            
+             <ui:define name="top">
+               
+            </ui:define>
+
+            <ui:define name="left">
+                
+            </ui:define>
+
+            <ui:define name="right">
+             
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="klijent" enctype="multipart/form-data" >
+                        <h2 style= "margin-left: 230px;"> Unesite podatke o predmetu: </h2>
+                        <p:panel id="podaciOPredmetu"  style="width:520px;  margin-left: 230px;" >
+                            <table id="podaciOPredmetu" title="Podaci o predmetu" style="width:50px; " border="3" cellspacing="5" cellpadding="5">
+                                <tbody>
+                                    <tr>
+                                        <td> <h:outputText value="Naziv predmeta:" /></td>
+                                        <td><p:inputText style="margin-left: 80px; width:200px;" value="#{mbPredmet.predmet.nazivPredmeta}" required="true" requiredMessage="Naziv je obavezno polje"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h:outputText value="Broj espb poena:" /></td>
+                                        <td><p:inputText style="margin-left: 80px; width:200px;" required="true" requiredMessage="Broj espb poena je obavezno polje" value="#{mbPredmet.predmet.brojESPB}" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h:outputText value="Katedra:" /></td>
+                                        <td><h:selectOneMenu id="mesto" style="margin-left: 80px; width:210px;" value="#{mbPredmet.predmet.sifraKatedre}" converter="CNVKatedra" >
+                                                <f:selectItems  value="#{mBKatedra.listaKatedri}"
+                                                                var="k" itemLabel="#{k.nazivKatedre}" itemValue="#{k}"
+                                                                />
+                                              </h:selectOneMenu></td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                            <p:commandButton value="Sačuvaj" style ="margin-left:400px;"/>
+                        </p:panel>
+
+
+                    </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
